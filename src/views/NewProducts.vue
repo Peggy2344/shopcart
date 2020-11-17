@@ -4,7 +4,7 @@
             <h3 id="h3">New Products</h3>
               <div class="flex">
                 <div class="card" v-for="(product) in products" :key="product.id">
-                  <router-link to="{name:'newproduct', params:{product: product.route}}">
+                  <router-link :to="{name:'newproduct', params:{product: product.route}}">
                     <img :src="product.img" :alt="product.name">
                   </router-link>
                     <h3>{{product.name}}</h3>
@@ -105,6 +105,12 @@ export default {
   methods: {
     addToCart (product) {
       this.$store.commit('additems', product)
+    }
+  },
+  props: {
+    category: {
+      type: String,
+      required: true
     }
   }
 }

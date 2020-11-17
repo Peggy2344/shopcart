@@ -33,7 +33,7 @@
         </vs-navbar-item>
         <template #right>
           <vs-button flat >Login</vs-button>
-          <router-link to="/cart"><vs-button>My Cart</vs-button></router-link>
+          <router-link to='/cart'><vs-button>My Cart</vs-button></router-link>
         </template>
       </vs-navbar>
       <vs-sidebar
@@ -42,7 +42,6 @@
         :open.sync="activeSidebar"
         >
         <template #logo>
-          <!-- ...img logo -->
         </template>
         <vs-sidebar-item to="/" id="home">
             Home

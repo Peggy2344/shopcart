@@ -8,7 +8,20 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    props: true,
     component: Home
+  },
+  {
+    path: '/collection/:category',
+    name: 'category',
+    props: true,
+    component: () => import(/* webpackChunkName: "newproducts" */ '../views/NewProducts.vue')
+  },
+  {
+    name: 'newproduct',
+    props: true,
+    path: '/collection/:category/:product',
+    component: () => import(/* webpackChunkName:"productdetails" */ '../views/ProductDetails.vue')
   },
   {
     path: '/about',
@@ -17,19 +30,6 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/new-products',
-    name: 'Newproducts',
-    component: () => import(/* webpackChunkName: "newproducts" */ '../views/NewProducts.vue'),
-    children: [
-      {
-        name: 'newproduct',
-        props: true,
-        path: '/:product',
-        component: () => import(/* webpackChunkName:"productdetails" */ './views/ProductDetails.vue')
-      }
-    ]
   },
   {
     path: '/cart',

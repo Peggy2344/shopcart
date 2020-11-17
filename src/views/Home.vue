@@ -6,7 +6,7 @@
             <vs-col class="card" vs-type="flex" vs-justify="center" vs-align="center" w="3" v-for="item in items" :key="item.id">
               <vs-card type="5">
                 <template #title>
-                  <router-link :to="'/'+ item.route" class="goshop">GO SHOP →</router-link>
+                  <router-link :to="{ name:'category', params: {category:item.route}}" class="goshop">GO SHOP →</router-link>
                 </template>
                 <template #img>
                   <img :src="item.img">
