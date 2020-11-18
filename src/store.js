@@ -16,45 +16,38 @@ export default {
           count: 1,
           itemDetails: [
             {
-              name: 'ROY',
-              price: '850',
               img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00853_d604fbd4-10f0-432e-9def-ed1389831150_360x.jpg?v=1604571257',
               color: 'red',
               id: '1-1',
               count: 1
             },
             {
-              name: 'ROY',
-              price: '850',
               img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00862_289ca62f-4f82-47a5-adaa-47bec087785b_1024x1024@2x.jpg?v=1604571257',
               id: '1-2',
               color: 'brick',
               count: 1
             },
             {
-              name: 'ROY',
-              price: '850',
               img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00849_c6e626fd-c4c2-485e-8631-25a18b717592_1024x1024@2x.jpg?v=1604571257',
               id: '1-3',
               color: 'baby blue',
               count: 1
             },
             {
-              name: 'ROY',
-              price: '850',
               img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00859_4225793d-d224-4631-8212-f45d86d03fc4_1024x1024@2x.jpg?v=1604571257',
               id: '1-4',
               color: 'Green',
               count: 1
             },
             {
-              name: 'ROY',
-              price: '850',
               img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00856_483dfd89-1b32-44e8-a487-d50182d69c79_1024x1024@2x.jpg?v=1604571257',
               id: '1-5',
               color: 'Black',
               count: 1
             }
+          ],
+          itempic: [
+            'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00853_d604fbd4-10f0-432e-9def-ed1389831150_360x.jpg?v=1604571257', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00862_289ca62f-4f82-47a5-adaa-47bec087785b_1024x1024@2x.jpg?v=1604571257', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00849_c6e626fd-c4c2-485e-8631-25a18b717592_1024x1024@2x.jpg?v=1604571257', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00859_4225793d-d224-4631-8212-f45d86d03fc4_1024x1024@2x.jpg?v=1604571257', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00856_483dfd89-1b32-44e8-a487-d50182d69c79_1024x1024@2x.jpg?v=1604571257'
           ]
         },
         {
@@ -64,15 +57,44 @@ export default {
           img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00824_360x.jpg?v=1604566934',
           id: '2',
           count: 1,
+          itemDetails: [
+            {
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934',
+              id: '2-1',
+              color: 'Black Print',
+              count: 1
+            },
+            {
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987',
+              id: '2-2',
+              color: 'Fluro Pink Print',
+              count: 1
+            }
+          ],
           itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
         },
         {
           name: 'RK RACING SERVICE T-SHIRT',
           route: 'rk-racing-t-shirt',
           price: '850',
+          size: ['S', 'M', 'XL'],
           img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00239_360x.jpg?v=1596446006',
           id: '3',
           count: 1,
+          itemDetails: [
+            {
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934',
+              id: '3-1',
+              color: 'white',
+              count: 1
+            },
+            {
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934',
+              id: '2-1',
+              color: 'Black Print',
+              count: 1
+            }
+          ],
           itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
         },
         {
