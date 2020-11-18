@@ -9,6 +9,7 @@
           div(class="flex-row justify-content-center")
             img(v-for="(item,index) in productDetail.itempic" :src="item" :key="index" @click="changePic(index)")
       .sideBar(class="col-4")
+        form
           h2 {{ productDetail.name }}
           div(class="col-7 mb-5")
             label Color
@@ -20,7 +21,23 @@
             select(v-model="size" class="form-select")
               option(value disabled="disabled") Choose Size
               option(v-for="size in productDetail.size") {{ size }}
-          p ${{ productDetail.price }}
+          div(class="col-12 flex-row")
+            vs-button(
+              square
+              icon
+              color="rgb(59,222,200)"
+              gradient
+              @click="addtocart"
+              ) -
+            input(:value="count" class="form-select" style="display:inline-block; width:60%")
+            vs-button(
+              square
+              icon
+              color="rgb(59,222,200)"
+              gradient
+              @click="addtocart"
+              ) +
+          p ${{ productDetail.price * count }}
 </template>
 
 <script>
@@ -32,7 +49,9 @@ export default {
       showIndex: '0',
       selected: '',
       selectedPic: '',
-      size: ''
+      size: '',
+      count: '1',
+      active: 0
     }
   },
   props: {
@@ -63,6 +82,12 @@ export default {
     changePic (index) {
       this.selectedPic = ''
       this.showIndex = index
+    },
+    addtocart () {
+      const item = this.itemDetails.find(item => item.color === this.selected)
+      if (item.size) item.size = this.size
+      item.count = this.count
+      this.$store.commit('additems', item)
     }
   },
   watch: {
@@ -113,7 +138,6 @@ export default {
 .optionPic img:hover
   border 1px solid #000
   cursor pointer
-
 .form-select
   display: block;
   width: 100%;

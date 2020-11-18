@@ -77,25 +77,25 @@ export default {
           name: 'RK RACING SERVICE T-SHIRT',
           route: 'rk-racing-t-shirt',
           price: '850',
-          size: ['S', 'M', 'XL'],
+          size: ['S', 'M', 'L', 'XL'],
           img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00239_360x.jpg?v=1596446006',
           id: '3',
           count: 1,
           itemDetails: [
             {
-              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934',
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00239_110x110@2x.jpg?v=1596446006',
               id: '3-1',
-              color: 'white',
+              color: 'White',
               count: 1
             },
             {
-              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934',
+              img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00259_110x110@2x.jpg?v=1596446033',
               id: '2-1',
               color: 'Black Print',
               count: 1
             }
           ],
-          itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
+          itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00239_110x110@2x.jpg?v=1596446006', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00251_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00259_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00275_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00269_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00247_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00252_110x110@2x.jpg?v=1596446033', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00271_110x110@2x.jpg?v=1596446033']
         },
         {
           name: 'HEAVY DUTY HEART T-SHIRT',
