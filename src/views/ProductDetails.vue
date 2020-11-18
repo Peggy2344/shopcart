@@ -1,15 +1,15 @@
 <template lang="pug">
   #roy
-    .container
-      .sideBar
-        #showPic
+    .container(class="flex-row")
+      .sideBar(class="col-12 flex-row")
+        #showPic(class="col-12")
           img(:src="showpic")
-        .optionPic
+        .optionPic(class="col-12")
           div(v-if="productDetail.itemDetails")
             img(v-for="(item,index) in productDetail.itemDetails" :src="item.img" :key="index" @click="changePic(index)")
           div(v-else)
             img(v-for="(item,index) in productDetail.itempic" :src="item" :key="index" @click="changePic(index)")
-      .sideBar
+      .sideBar(class="col-12")
         h2 ROY
         p $850
 </template>
