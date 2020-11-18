@@ -73,7 +73,7 @@ export default {
           img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00239_360x.jpg?v=1596446006',
           id: '3',
           count: 1,
-          itemPic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
+          itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
         },
         {
           name: 'HEAVY DUTY HEART T-SHIRT',
@@ -82,7 +82,7 @@ export default {
           img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC06338_360x.jpg?v=1594891860',
           id: '4',
           count: 1,
-          itemPic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
+          itempic: ['https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00826_1024x1024@2x.jpg?v=1604566934', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00829_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00831_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00842_1024x1024@2x.jpg?v=1604566987', 'https://cdn.shopify.com/s/files/1/0017/8002/3359/products/DSC00846_1024x1024@2x.jpg?v=1604566987']
         },
         {
           name: 'FELIX',

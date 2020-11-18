@@ -3,23 +3,26 @@
     .container
       .sideBar
         #showPic
-          //- img(:src="selected")
+          img(:src="showpic")
         .optionPic
-          img(v-if="productDetail.itemDetails" v-for="item in productDetail.itemDetails" :src="item.img")
-          img(v-else v-for="item in productDetail.itempic" :src="item")
+          div(v-if="productDetail.itemDetails")
+            img(v-for="(item,index) in productDetail.itemDetails" :src="item.img" :key="index" @click="changePic(index)")
+          div(v-else)
+            img(v-for="(item,index) in productDetail.itempic" :src="item" :key="index" @click="changePic(index)")
       .sideBar
         h2 ROY
         p $850
-        label Color
-        //- select(v-model="selected")
-        //-   option(v-for="item")
-        button(@click="addToCart(product)") Add To Cart
 </template>
 
 <script>
 import store from '@/store.js'
 export default {
   name: 'productdetail',
+  data () {
+    return {
+      showIndex: '0'
+    }
+  },
   props: {
     product: {
       type: String,
@@ -36,6 +39,19 @@ export default {
     },
     productDetail () {
       return this.categoryName.items.find(item => item.route === this.product)
+    },
+    showpic () {
+      const index = this.showIndex
+      if (this.productDetail.itemDetails) {
+        return this.productDetail.itemDetails[index].img
+      } else {
+        return this.productDetail.itempic[index]
+      }
+    }
+  },
+  methods: {
+    changePic (index) {
+      this.showIndex = index
     }
   }
 }

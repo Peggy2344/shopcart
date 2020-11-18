@@ -15,7 +15,7 @@
             </vs-navbar-item>
         <vs-navbar-item :active="active == 'products'" id="products">
           <div class="dropdown-wrapper">
-            <a class="dropdown-title" href="#" @click="showList" ref="title">Products</a>
+            <a class="dropdown-title" @click="showList" ref="title">Products</a>
             <ul id="nav-dropdown" ref="menu" v-if="listStatus">
               <li class="dropdown-item" v-for="(list,index) in lists" :key="index">
                 <router-link :to="'/'+list.route">
