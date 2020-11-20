@@ -1,4 +1,4 @@
- <template>
+<template>
   <div id="app">
     <div class="center examplex hidden">
       <vs-navbar fixed not-line center-collapsed v-model="active" color="rgb(235,236,72)" text-black>
@@ -18,7 +18,7 @@
             <a class="dropdown-title" @click="showList" ref="title">Products</a>
             <ul id="nav-dropdown" ref="menu" v-if="listStatus">
               <li class="dropdown-item" v-for="(list,index) in lists" :key="index">
-                <router-link :to="'/'+list.route">
+                <router-link :to="{ name:'category', params: {category:list.route}}">
                 {{list.name}}
                 </router-link>
                 </li>

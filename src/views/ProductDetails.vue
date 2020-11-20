@@ -1,12 +1,13 @@
 <template lang="pug">
   #roy
     .container(class="flex-row")
+
       .sideBar(class="col-7 flex-row justify-content-center")
         #showPic(class="col-12 justify-content-center")
           img(v-if="selectedPic" :src="selectedPic")
           img(v-else :src="showpic")
         .optionPic(class="col-10")
-          div(class="flex-row justify-content-center")
+          div(class="flex-row")
             img(v-for="(item,index) in productDetail.itempic" :src="item" :key="index" @click="changePic(index)")
       .sideBar(class="col-4")
         form
@@ -21,27 +22,19 @@
             select(v-model="size" class="form-select")
               option(value disabled="disabled") Choose Size
               option(v-for="size in productDetail.size") {{ size }}
-          div(class="col-12 flex-row")
-            vs-button(
-              square
-              icon
-              color="rgb(59,222,200)"
-              gradient
-              @click="addtocart"
-              ) -
-            input(:value="count" class="form-select" style="display:inline-block; width:60%")
-            vs-button(
-              square
-              icon
-              color="rgb(59,222,200)"
-              gradient
-              @click="addtocart"
-              ) +
-          p ${{ productDetail.price * count }}
+          div(class="col-8 flex-row align-items-center mb-5")
+            button(class="change_count_btn") -
+            input(:value="count" class="form-select" style="display:inline-block; width:70%")
+            button(class="change_count_btn") +
+          div(class="col-12 flex-row align-items-center mb-5")
+            h3(class="mr-5") Total
+            p ${{ productDetail.price * count }}
+          div(class="col-7 flex-row align-items-center")
+            button(class="add_to_cart_btn" @click="addtocart") Add To Cart
 </template>
 
 <script>
-import store from '@/store.js'
+import storedata from '@/123.js'
 export default {
   name: 'productdetail',
   data () {
@@ -50,7 +43,7 @@ export default {
       selected: '',
       selectedPic: '',
       size: '',
-      count: '1',
+      count: 1,
       active: 0
     }
   },
@@ -66,7 +59,7 @@ export default {
   },
   computed: {
     categoryName () {
-      return store.products.find(item => item.route === this.category)
+      return storedata.products.find(item => item.route === this.category)
     },
     productDetail () {
       return this.categoryName.items.find(item => item.route === this.product)
@@ -85,8 +78,13 @@ export default {
     },
     addtocart () {
       const item = this.itemDetails.find(item => item.color === this.selected)
-      if (item.size) item.size = this.size
+      console.log(item, this.$store)
+      if (this.productDetail.size) {
+        item.size = this.size
+      }
       item.count = this.count
+      item.name = this.productDetail.name
+      item.price = this.productDetail.price
       this.$store.commit('additems', item)
     }
   },
@@ -100,6 +98,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+*
+  font-family "PT Sans","HelveticaNeue","Helvetica Neue",sans-serif
 #roy
   width 100%
   margin-top 50px
@@ -126,12 +126,19 @@ export default {
   max-width: 83.333333%;
 .mb-5
   margin-bottom: 3rem
+.mr-5
+  margin-right 3rem
 #showPic img
   width 60%
   margin-bottom 10px
 .justify-content-center
   display flex
   justify-content center
+.justify-content-start
+  justify-content flex-start
+.align-items-center
+  display flex
+  align-items center
 .optionPic img
   width 15%
   margin 15px
@@ -155,5 +162,15 @@ export default {
 label
   display: inline-block;
   margin-bottom: 0.5rem;
-
+.change_count_btn
+  width 30px
+  height 30px
+  background #000
+  color #fff
+  margin 0 5px
+.add_to_cart_btn
+  width 100%
+  height 35px
+  background #000
+  color #fff
 </style>

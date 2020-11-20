@@ -1,12 +1,14 @@
 <template>
     <div id="newitems">
-        <div class="container">
             <h3 id="h3">New Products</h3>
+        <div class="container">
               <div class="flex">
                 <div class="card" v-for="(product) in products" :key="product.id">
-                  <router-link :to="{name:'newproduct', params:{product: product.route}}">
+                  <div class="zoom" style="text-align:center">
+                  <router-link :to="{name:'newproduct', params:{product: product.route}}" style="text-align:center">
                     <img :src="product.img" :alt="product.name">
                   </router-link>
+                  </div>
                     <h3>{{product.name}}</h3>
                     <p>${{product.price}}</p>
                     <vs-button
@@ -15,7 +17,7 @@
                     size='mini'
                     @click="addToCart(product)"
                   >
-                  Add to Cart
+                  直接購買
                   </vs-button>
               </div>
             </div>
@@ -116,22 +118,27 @@ export default {
 }
 </script>
 <style scoped>
+*{
+  box-sizing: border-box;
+}
 #h3{
   margin: 50px;
+  text-align: left;
 }
 .flex{
-  width: 100%;
+  width: 80%;
   margin: auto;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-wrap: wrap;
+  padding-left: 15px;
 }
 .card{
-  width: 40%;
-  margin: 10px;
-  padding: 10px;
-  box-shadow: 5px 5px 20px grey;
+  width: calc(50% - 10px);
+  margin: 0 10px 20px 0;
+  padding: 10px 0;
+  /* box-shadow: 5px 5px 20px grey; */
   border-radius: 50px;
   font-size: 0.5rem;
   display: flex;
@@ -139,7 +146,13 @@ export default {
   align-items: center;
 }
 .card img{
-  width: 80%;
+  width: 70%;
   border-radius: 50px;
+}
+@media (min-width: 568px) {
+  .card{
+  width: calc(25% - 12.5px);
+  font-size: 0.8rem;
+  }
 }
 </style>
