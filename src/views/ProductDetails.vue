@@ -1,7 +1,6 @@
 <template lang="pug">
   #roy
     .container(class="flex-row")
-
       .sideBar(class="col-7 flex-row justify-content-center")
         #showPic(class="col-12 justify-content-center")
           img(v-if="selectedPic" :src="selectedPic")
@@ -22,13 +21,14 @@
             select(v-model="size" class="form-select")
               option(value disabled="disabled") Choose Size
               option(v-for="size in productDetail.size") {{ size }}
-          div(class="col-8 flex-row align-items-center mb-5")
-            button(class="change_count_btn") -
-            input(:value="count" class="form-select" style="display:inline-block; width:70%")
-            button(class="change_count_btn") +
+          div(class="col-8 flex-row align-items-center mb-5 quantity")
+            button(class="quantity_minus" @click="delHandler") -
+            //- input(:value="count" class="form-select" style="display:inline-block; width:70%")
+            | {{count}}
+            button(class="quantity_add" @click="addHandler") +
           div(class="col-12 flex-row align-items-center mb-5")
             h3(class="mr-5") Total
-            p ${{ productDetail.price * count }}
+            p ${{ productDetail.price }}
           div(class="col-7 flex-row align-items-center")
             button(class="add_to_cart_btn" @click="addtocart") Add To Cart
 </template>
@@ -72,13 +72,19 @@ export default {
     }
   },
   methods: {
+    delHandler () {
+      if (this.count === 1) return
+      this.count--
+    },
+    addHandler () {
+      this.count++
+    },
     changePic (index) {
       this.selectedPic = ''
       this.showIndex = index
     },
     addtocart () {
       const item = this.itemDetails.find(item => item.color === this.selected)
-      console.log(item, this.$store)
       if (this.productDetail.size) {
         item.size = this.size
       }
@@ -162,15 +168,55 @@ export default {
 label
   display: inline-block;
   margin-bottom: 0.5rem;
-.change_count_btn
-  width 30px
-  height 30px
-  background #000
-  color #fff
-  margin 0 5px
+
 .add_to_cart_btn
   width 100%
-  height 35px
+  line-height 50px
+  background none
+  height: 50px;
+  padding: 0px;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  padding: 0px 82px;
+  color: #fff;
+  border: 1px solid #2a2a2a;
+  background-color: #2a2a2a;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  transition: background 0.35s cubic-bezier(0.65, 0.005, 0.35, 0.995),transform 0.35s cubic-bezier(0.65, 0.005, 0.35, 0.995)
+.add_to_cart_btn:hover
+  color #ffffff
   background #000
-  color #fff
+.quantity
+  position: relative;
+  display: inline-block;
+  width: 60%;
+  height: 36px;
+  border: 1px solid #656565;
+  vertical-align: middle;
+  font-size: 0.5625em;
+  text-align: center;
+  line-height: 36px;
+.quantity button
+    position: absolute;
+    display: block;
+    width: 36px;
+    height: 20px;
+    color: #656565;
+    background none
+    border none
+    font-family: Arial, Helvatic, sans-serif;
+    text-align: center;
+    font-size: 20px;
+    line-height: 36px;
+    z-index: 1;
+    cursor: pointer;
+.quantity_minus
+  left 0
+  top 0
+.quantity_add
+  right 0
+  top 0
 </style>

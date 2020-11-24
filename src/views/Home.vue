@@ -1,120 +1,42 @@
 <template>
-      <div id="home">
-        <div class="center grid">
-          <h1>All Categories</h1>
-          <vs-row>
-            <vs-col class="card" vs-type="flex" vs-justify="center" vs-align="center" w="3" v-for="item in items" :key="item.id">
-              <vs-card type="5">
-                <template #title>
-                  <router-link :to="{ name:'category', params: {category:item.route}}" class="goshop">GO SHOP →</router-link>
-                </template>
-                <template #img>
-                  <img :src="item.img">
-                </template>
-                <template #text>
-                  <p></p>
-                </template>
-                <template #interactions>
-                  <h3 class="title">{{ item.name }}</h3>
-                </template>
-              </vs-card>
-            </vs-col>
-          </vs-row>
-        </div>
+  <div id="home">
+    <div class="center grid">
+      <h1>All Categories</h1>
+      <div class="flex">
+        <vs-col class="card" vs-type="flex" vs-justify="center" vs-align="center" w="3" v-for="item in items" :key="item.id">
+          <vs-card type="5">
+            <template #title>
+              <router-link :to="{ name:'category', params: {category:item.route}}" class="goshop">GO SHOP →</router-link>
+            </template>
+            <template #img>
+              <img :src="item.img">
+            </template>
+            <template #text>
+              <p></p>
+            </template>
+            <template #interactions>
+              <h3 class="title">{{ item.name }}</h3>
+            </template>
+          </vs-card>
+        </vs-col>
       </div>
-  </template>
+    </div>
+  </div>
+</template>
 
 <script>
+import productcategory from '@/123.js'
 export default {
   name: 'Home',
-  data () {
-    return {
-      items: [
-        {
-          name: 'New Products',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/New_Products_360x.jpg?v=1524551613 360w 360h',
-          id: 1,
-          route: 'new-products',
-          count: 16
-        },
-        {
-          name: 'Backpacks',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Backpacks_360x.jpg?v=1524551692 360w 360h',
-          id: 2,
-          route: 'backpacks',
-          count: 16
-        },
-        {
-          name: 'Messenger Bags',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Messenger_Bags_360x.JPG?v=1524559166 360w 360h',
-          id: 3,
-          route: 'messenger-bags',
-          count: 16
-        },
-        {
-          name: 'Waist Bags',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Waist_Bags_360x.JPG?v=1548666518 360w 360h',
-          id: 4,
-          route: 'waist-bags',
-          count: 16
-        },
-        {
-          name: 'Wallets Clutches',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Wallets_Clutches.JPG?v=1524551319 334w 333h',
-          id: 5,
-          route: 'wallets-clutches',
-          count: 16
-        },
-        {
-          name: 'Specialty Bags',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Specialty_Bags_360x.jpg?v=1548666111 360w 360h',
-          id: 6,
-          route: 'specialty-bags',
-          count: 16
-        },
-        {
-          name: 'Totebags',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Totebags_360x.jpg?v=1524551806 360w 360h',
-          id: 7,
-          route: 'totebags',
-          count: 16
-        },
-        {
-          name: 'Rubber Killer Friends',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Rubber_Killer_Friends_360x.jpg?v=1548665699 360w 360h',
-          id: 8,
-          route: 'rubber-killer-friends',
-          count: 16
-        },
-        {
-          name: 'Accessories',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Accessories_360x.jpg?v=1565154851 360w 360h',
-          id: 9,
-          route: 'accessories',
-          count: 16
-        },
-        {
-          name: 'Apparel',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Apparel_360x.jpg?v=1549861732 360w 360h',
-          id: 10,
-          route: 'apparel',
-          count: 16
-        },
-        {
-          name: 'Footwear',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Footwear_360x.JPG?v=1524551286 360w 359h',
-          id: 11,
-          route: 'footwear',
-          count: 16
-        },
-        {
-          name: 'Sale',
-          img: 'https://cdn.shopify.com/s/files/1/0017/8002/3359/collections/Sale_360x.jpg?v=1548666905 360w 360h',
-          id: 12,
-          route: 'sale',
-          count: 16
-        }
-      ]
+  props: {
+    category: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    items () {
+      return productcategory.products
     }
   }
 }
@@ -122,7 +44,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 #home{
-  margin: 100px;
+  margin-top: 20px;
 }
 .vs-card-content,
 h1{
@@ -168,5 +90,45 @@ img{
 }
 .goshop:focus{
   color: rgb(222,83,42);
+}
+.flex{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 15px;
+}
+.card{
+  width: calc(50% - 10px);
+  height: 180px;
+  margin: 0 10px 10px 0;
+  padding: 10px 0;
+  border-radius: 50px;
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.vs-card__text{
+  display: none;
+}
+@media (min-width: 568px) {
+  #home{
+    margin: 50px;
+  }
+  .flex{
+  width: 80%;
+  }
+  .card{
+  width: calc(25% - 12.5px);
+  height: calc(25% - 12.5px);
+  font-size: 0.8rem;
+   margin: 0 10px 20px 0;
+  }
+  .vs-card__text{
+  opacity: 1;
+}
 }
 </style>

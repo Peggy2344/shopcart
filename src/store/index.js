@@ -19,7 +19,7 @@ export default new Vuex.Store({
       if (indexinstate === -1) {
         state.items.push(product)
       } else {
-        state.items[indexinstate].count++
+        state.items[indexinstate].count += product.count
       }
     },
     delCount (state, data) {

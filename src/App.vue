@@ -1,11 +1,15 @@
 <template>
   <div id="app">
     <div class="center examplex hidden">
-      <vs-navbar fixed not-line center-collapsed v-model="active" color="rgb(235,236,72)" text-black>
+      <vs-navbar fixed not-line center-collapsed v-model="active" color="#000" text-white>
         <template #left>
-          <vs-button @click="activeSidebar = !activeSidebar" flat icon v-if="windowWidth<500">
-            <i class='bx bx-menu'></i>
-          </vs-button>
+          <!-- <vs-button @click="activeSidebar = !activeSidebar" > -->
+            <nav id="btn-hamburger" @click="togglenav" flat v-if="windowWidth<500">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+            </nav>
+          <!-- </vs-button> -->
           <div id="logo"></div>
         </template>
             <vs-navbar-item :active="active == 'home'" id="home">
@@ -38,6 +42,7 @@
       </vs-navbar>
       <vs-sidebar
         absolute
+        fixed
         v-model="active"
         :open.sync="activeSidebar"
         >
@@ -61,7 +66,6 @@
         </vs-sidebar-group>
         <vs-sidebar-item id="chat">
           <template #icon>
-            <i class='bx bx-chat' ></i>
           </template>
           Chat
         </vs-sidebar-item>
@@ -150,6 +154,11 @@ export default {
   methods: {
     showList () {
       this.listStatus = !this.listStatus
+    },
+    togglenav () {
+      const btn = document.getElementById('btn-hamburger')
+      this.activeSidebar = !this.activeSidebar
+      btn.classList.toggle('close')
     }
   },
   mounted () {
@@ -243,6 +252,56 @@ li a {
   right: 0;
 }
 .vs-sidebar-content.open.absolute{
-  top: 30px;
+  top: 44px;
+}
+.vs-navbar{
+  height: 60px;
+}
+#btn-hamburger{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 20px;
+    width: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    pointer-events: visible;
+}
+.line {
+    width: 100%;
+    min-height: 2px;
+    height: 2px;
+    max-height: 2px;
+    background: #fff;
+    transition: all .3s ease-in-out;
+}
+.line {
+    transform-origin: right;
+    transform: rotate(0deg);
+}
+.line:nth-of-type(3) {
+    transform-origin: right;
+    transform: rotate(0deg);
+}
+span{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+#btn-hamburger.close .line:first-of-type {
+    transform: translateX(-.5rem)     rotate(-45deg);
+  transform-origin: right;
+}
+#btn-hamburger.close .line:nth-of-type(2) {
+    transform: translateX(110%);
+}
+#btn-hamburger.close .line:nth-of-type(3) {
+    transform: translateX(-.5rem) rotate(45deg);
+  transform-origin: right;
 }
 </style>
