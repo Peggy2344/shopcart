@@ -1,92 +1,44 @@
 <template>
-  <div id="app">
-    <div class="center examplex hidden">
-      <vs-navbar fixed not-line center-collapsed v-model="active" color="#000" text-white>
-        <template #left>
-          <!-- <vs-button @click="activeSidebar = !activeSidebar" > -->
-            <nav id="btn-hamburger" @click="togglenav" flat v-if="windowWidth<500">
-              <span class="line"></span>
-              <span class="line"></span>
-              <span class="line"></span>
-            </nav>
-          <!-- </vs-button> -->
-          <div id="logo"></div>
-        </template>
-            <vs-navbar-item :active="active == 'home'" id="home">
-          <router-link to="/">
-                Home
-          </router-link>
-            </vs-navbar-item>
-        <vs-navbar-item :active="active == 'products'" id="products">
-          <div class="dropdown-wrapper">
-            <a class="dropdown-title" @click="showList" ref="title">Products</a>
-            <ul id="nav-dropdown" ref="menu" v-if="listStatus">
-              <li class="dropdown-item" v-for="(list,index) in lists" :key="index">
-                <router-link :to="{ name:'category', params: {category:list.route}}">
-                {{list.name}}
-                </router-link>
-                </li>
-            </ul>
+  <div id="app" class="vh-100">
+    <nav class="navbar navbar-expand-lg">
+    <nav id="btn-hamburger" class="col-2" data-toggle="collapse" data-target="#navbarSupportedContent" @click="togglenav" flat v-if="windowWidth < 996">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </nav>
+    <div class="collapse navbar-collapse col-3" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item active">
+          <router-link class="nav-link" to="/">Home <span class="sr-only">(current)</span></router-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            Category
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </vs-navbar-item>
-        <vs-navbar-item :active="active == 'components'" id="components">
-          Components
-        </vs-navbar-item>
-        <vs-navbar-item :active="active == 'license'" id="license">
-          license
-        </vs-navbar-item>
-        <template #right>
-          <vs-button flat >Login</vs-button>
-          <router-link to='/cart'><vs-button>My Cart</vs-button></router-link>
-        </template>
-      </vs-navbar>
-      <vs-sidebar
-        absolute
-        fixed
-        v-model="active"
-        :open.sync="activeSidebar"
-        >
-        <template #logo>
-        </template>
-        <vs-sidebar-item to="/" id="home">
-            Home
-        </vs-sidebar-item>
-        <vs-sidebar-group>
-          <template #header>
-            <vs-sidebar-item arrow>
-              <template #icon>
-                <i class='bx bx-code-alt' ></i>
-              </template>
-              Products
-            </vs-sidebar-item>
-          </template>
-          <vs-sidebar-item v-for="(list,index) in lists" :key="index" :to="'/'+list.route" :id="list.route">
-            {{list.name}}
-          </vs-sidebar-item>
-        </vs-sidebar-group>
-        <vs-sidebar-item id="chat">
-          <template #icon>
-          </template>
-          Chat
-        </vs-sidebar-item>
-        <template #footer>
-          <vs-row justify="space-between">
-            <vs-avatar>
-              <vs-icon icon-pack="fa-shopping-bag"></vs-icon>
-            </vs-avatar>
-            <vs-avatar badge-color="danger" badge-position="top-right">
-              <i class='bx bx-bell' ></i>
-              <template #badge>
-                28
-              </template>
-            </vs-avatar>
-          </vs-row>
-        </template>
-      </vs-sidebar>
+        </li>
+      </ul>
     </div>
-      <div class="square">
-        <router-view />
-      </div>
+    <router-link to="/" class="navbar-brand col-6 text-center">
+      <span class="fontstyle">RUBBER KILLER</span>
+    </router-link>
+    <form class="form-inline my-2 my-lg col-3 d-flex justify-content-end">
+        <a class="mr-lg-3 form-link" href="#">Login</a>
+        <router-link to="/cart" class="mx-lg-3 form-link">Cart</router-link>
+    </form>
+  </nav>
+  <hr>
+    <div class="square">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -158,36 +110,43 @@ export default {
     togglenav () {
       const btn = document.getElementById('btn-hamburger')
       this.activeSidebar = !this.activeSidebar
-      btn.classList.toggle('close')
+      if (this.activeSidebar) btn.classList.add('close')
     }
   },
   mounted () {
-    document.addEventListener('click', (e) => {
-      if (!this.$refs.title.contains(e.target)) {
-        this.listStatus = false
-      }
-    })
     window.addEventListener('resize', () => {
       this.windowWidth = window.innerWidth
     })
+  },
+  watch: {
+    activeSidebar (val) {
+      const btn = document.getElementById('btn-hamburger')
+      if (!val) {
+        btn.classList.remove('close')
+      }
+    }
   }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 * {
   box-sizing: border-box!important;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Anton','Lato', sans-serif;
+  scroll-behavior:smooth;
 }
 body{
   margin: 0;
   padding: 0;
+  scroll-behavior:smooth;
 }
 .router-link-active{
   text-decoration: none;
 }
-#logo{
+/* #logo{
   height: 30px;
   width: 100px;
   background-color: rgb(222,83,42);
@@ -196,13 +155,12 @@ body{
 .dropdown-title{
   text-decoration: none;
   color: #333;
-}
+} */
 .square{
   position: relative;
-  overflow: auto;
-  transform: translateY(44px);
+  /* overflow: auto; */
 }
-.child{
+/* .child{
   height: 400px;
   width: 100%;
 }
@@ -293,12 +251,95 @@ span{
     vertical-align: baseline;
     box-sizing: border-box;
 }
-#btn-hamburger.close .line:first-of-type {
+/* #btn-hamburger.close .line:first-of-type {
     transform: translateX(-.5rem)     rotate(-45deg);
   transform-origin: right;
 }
 #btn-hamburger.close .line:nth-of-type(2) {
     transform: translateX(110%);
+}
+#btn-hamburger.close .line:nth-of-type(3) {
+    transform: translateX(-.5rem) rotate(45deg);
+  transform-origin: right;
+} */
+body {
+      margin: 0;
+      /* background-color: #D9E1CC; */
+      overflow-x: hidden;
+      height: 100vh;
+    }
+
+hr {
+  background-color: rgb(56, 82, 79);
+  margin: 0;
+}
+
+.navbar {
+  background-color: #D9E1CC;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar-nav li {
+  margin: 0 20px;
+}
+.nav-link {
+  color: rgb(56, 82, 79);
+  font-family: 'Poppins', sans-serif;
+}
+.form-link {
+  font-family: 'Poppins', sans-serif;
+  color: rgb(56, 82, 79);
+}
+.fontstyle {
+  color: rgb(56, 82, 79);
+  font-family: 'Anton', sans-serif;
+}
+.navbar-brand{
+  transform: translateX(16px);
+  font-size: 2rem;
+}
+#btn-hamburger{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 20px;
+    width: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    pointer-events: visible;
+}
+.line {
+    width: 30px;
+    min-height: 2px;
+    height: 2px;
+    max-height: 2px;
+    background: #fff;
+    transition: all .3s ease-in-out;
+}
+.line {
+    transform-origin: right;
+    transform: rotate(0deg);
+}
+.line:nth-of-type(3) {
+    transform-origin: right;
+    transform: rotate(0deg);
+}
+span{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+#btn-hamburger.close .line:first-of-type {
+    transform: translateX(-.5rem)     rotate(-45deg);
+  transform-origin: right;
+}
+#btn-hamburger.close .line:nth-of-type(2) {
+    opacity: 0;
 }
 #btn-hamburger.close .line:nth-of-type(3) {
     transform: translateX(-.5rem) rotate(45deg);

@@ -23,31 +23,24 @@
             :key="data.id"
             v-for="(data) in cartData"
           >
-            <vs-td>
+            <vs-td class="item_detail">
               {{ data.name }}
               <div class="mt-2">
-              <span v-if="data.color">color : {{ data.color }}</span><br>
-              <span v-if="data.size">尺寸 : {{ data.size }}</span>
+              <span class="item_detail" v-if="data.color">color : {{ data.color }}</span><br>
+              <span class="item_detail" v-if="data.size">尺寸 : {{ data.size }}</span>
               </div>
             </vs-td>
             <vs-td>
             <img :src="data.img" :alt="data.name">
             </vs-td>
-            <vs-td>
+            <vs-td class="item_detail">
             {{ data.price }}
             </vs-td>
-            <vs-td class="vs-table__td" v-if="data.count === 1">
-              <div class="addminus">
-                <input type="text" v-model="data.count">
-                <button @click="additem(data)">+</button>
-                <button class="ml-auto" @click="removeItem(data)">刪除</button>
-              </div>
-            </vs-td>
-            <vs-td class="vs-table__td" v-else>
-              <div class="addminus">
-                <button @click="delitem(data)">-</button>
-                <input type="text" v-model="data.count">
-                <button @click="additem(data)">+</button>
+            <vs-td class="vs-table__td">
+              <div class="addminus quantity">
+                <button @click="delitem(data)" class="quantity_minus">-</button>
+                <span class="item_detail">{{data.count}}</span>
+                <button @click="additem(data)" class="quantity_add">+</button>
               </div>
             </vs-td>
           </vs-tr>
@@ -55,7 +48,7 @@
         <template #footer>
         <div class="totalAmount">
           <div class="ml-auto">金額總計 : </div>
-          <div class="mx-3">{{ amount }}</div>
+          <div class="mx-3 item_detail">{{ amount }}</div>
         </div>
         </template>
       </vs-table>
@@ -105,12 +98,7 @@ img {
 .vs-table-content{
   width: 70%;
 }
-.addminus{
-  display: flex;
-}
-.addminus input{
-  width: 30px;
-}
+
 .small{
   margin-left: 20px;
 }
@@ -130,4 +118,41 @@ img {
   display: flex;
   line-height: 100%;
 }
+.item_detail{
+  font-family: 'Poppins', sans-serif;
+}
+.quantity{
+  position: relative;
+  display: inline-block;
+  width: 60%;
+  height: 36px;
+  border: 1px solid #656565;
+  vertical-align: middle;
+  font-size: 0.5625em;
+  text-align: center;
+  line-height: 36px;
+  }
+.quantity button{
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  color: #656565;
+  background: none;
+  border: none;
+  font-family: Arial, Helvatic, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  line-height: 36px;
+  z-index: 1;
+  cursor: pointer;
+  }
+.quantity_minus{
+  left: 0;
+  top: 0;
+  }
+.quantity_add{
+  right: 0;
+  top: 0;
+  }
 </style>

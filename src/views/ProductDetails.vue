@@ -1,43 +1,76 @@
-<template lang="pug">
-  #roy
-    .container(class="flex-row")
-      .sideBar(class="col-7 flex-row justify-content-center")
-        #showPic(class="col-12 justify-content-center")
-          img(v-if="selectedPic" :src="selectedPic")
-          img(v-else :src="showpic")
-        .optionPic(class="col-10")
-          div(class="flex-row")
-            img(v-for="(item,index) in productDetail.itempic" :src="item" :key="index" @click="changePic(index)")
-      .sideBar(class="col-4")
-        form
-          h2 {{ productDetail.name }}
-          div(class="col-7 mb-5")
-            label Color
-            select(v-model="selected" class="form-select")
-              option(value disabled="disabled") Choose Color
-              option(v-for="detail in itemDetails") {{ detail.color }}
-          div(v-if="productDetail.size" class="col-7 mb-5")
-            label Size
-            select(v-model="size" class="form-select")
-              option(value disabled="disabled") Choose Size
-              option(v-for="size in productDetail.size") {{ size }}
-          div(class="col-8 flex-row align-items-center mb-5 quantity")
-            button(class="quantity_minus" @click="delHandler") -
-            //- input(:value="count" class="form-select" style="display:inline-block; width:70%")
-            | {{count}}
-            button(class="quantity_add" @click="addHandler") +
-          div(class="col-12 flex-row align-items-center mb-5")
-            h3(class="mr-5") Total
-            p ${{ productDetail.price }}
-          div(class="col-7 flex-row align-items-center")
-            button(class="add_to_cart_btn" @click="addtocart") Add To Cart
+<template>
+ <div id="roy">
+   <div class="linkArea">
+        <router-link to="/">Home</router-link>
+          <span>
+            <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1C1.46388 2.32978 2.57065 3.41102 4 3.96095V4.03905C2.57065 4.58898 1.46388 5.67009 1 7" stroke="#818181" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+        <router-link :to="{name: 'category'}">{{categoryName.name}}</router-link>
+          <span>
+            <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1C1.46388 2.32978 2.57065 3.41102 4 3.96095V4.03905C2.57065 4.58898 1.46388 5.67009 1 7" stroke="#818181" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+        <router-link :to="productDetail.route">{{productDetail.name}}</router-link>
+      </div>
+    <div class="containerarea flex-row">
+        <div class="sideBar col-7 flex-row justify-content-center">
+            <div id="showPic" class="col-12 d-flex justify-content-center">
+                <img v-if="selectedPic" :src="selectedPic">
+                <img v-else :src="showpic">
+            </div>
+            <div class="optionPic col-10">
+                <div class="flex-row">
+                    <img v-for="(item,index) in productDetail.itempic" :src="item" :key="item.id" @click="changePic(index)">
+                </div>
+            </div>
+        </div>
+        <div class="sideBar col-4">
+            <form class="mt-5" @submit.prevent>
+                <h2 class="mb-5">{{ productDetail.name }}</h2>
+                <div class="d-flex flex-column align-items-start">
+                  <div class="col-7 mb-5 p-0">
+                    <label class="mb-1">Color</label>
+                    <select v-model="selected" class="form-select">
+                        <option value disabled="disabled">Choose Color</option>
+                        <option v-for="detail in itemDetails" :key="detail.id">{{ detail.color }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div v-if="productDetail.size" class="col-8 mb-5">
+                    <label>Size</label>
+                    <select v-model="size" class="form-select">
+                        <option value disabled="disabled">Choose Size</option>
+                        <option v-for="size in productDetail.size" :key="size">{{ size }}</option>
+                    </select>
+                </div>
+                <div class="col-8 flex-row align-items-center mb-5 quantity">
+                    <button class="quantity_minus" @click="delHandler">-</button>
+                    {{ count }}
+                    <button class="quantity_add" @click="count++">+</button>
+                </div>
+                <div class="col-12 d-flex align-items-center mb-5">
+                    <h3 class="mr-5">
+                        Total
+                    </h3>
+                    <p class="price_p">${{ productDetail.price }}</p>
+                </div>
+                <div class="col-8 flex-row align-items-center p-0">
+                    <button class="add_to_cart_btn" @click="addtocart">Add To Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
 import storedata from '@/123.js'
 export default {
   name: 'productdetail',
-  data () {
+  data: () => {
     return {
       showIndex: '0',
       selected: '',
@@ -106,45 +139,30 @@ export default {
 <style lang="stylus" scoped>
 *
   font-family "PT Sans","HelveticaNeue","Helvetica Neue",sans-serif
+body
+  background #fff
 #roy
   width 100%
   margin-top 50px
 .flex-row
   display flex
   flex-wrap wrap
-.col-12
-  flex 0 0 100%
-  max-width 100%
-.col-6
-  flex 0 0 50%
-  max-width 50%
-.col-7
-  flex 0 0 58.333333%;
-  max-width 58.333333%;
-.col-4
-  flex 0 0 33.33%
-  max-width 33.33%
-.col-8
-  flex 0 0 66.666667%;
-  max-width 66.666667%;
-.col-10
-  flex: 0 0 83.333333%;
-  max-width: 83.333333%;
-.mb-5
-  margin-bottom: 3rem
-.mr-5
-  margin-right 3rem
 #showPic img
   width 60%
   margin-bottom 10px
-.justify-content-center
-  display flex
-  justify-content center
-.justify-content-start
-  justify-content flex-start
-.align-items-center
-  display flex
-  align-items center
+.linkArea
+  margin: 50px 0 30px 50px
+.linkArea a
+  color:  #818181;
+  margin: 0 10px 0 0;
+  font-family: 'Poppins', sans-serif
+.linkArea a:last-child
+  color: rgb(56, 82, 79)
+.linkArea a:hover
+  color: rgb(56, 82, 79)
+  text-decoration none
+.linkArea span
+  margin: 0 10px 0 0
 .optionPic img
   width 15%
   margin 15px
@@ -168,7 +186,6 @@ export default {
 label
   display: inline-block;
   margin-bottom: 0.5rem;
-
 .add_to_cart_btn
   width 100%
   line-height 50px
@@ -200,23 +217,25 @@ label
   text-align: center;
   line-height: 36px;
 .quantity button
-    position: absolute;
-    display: block;
-    width: 36px;
-    height: 20px;
-    color: #656565;
-    background none
-    border none
-    font-family: Arial, Helvatic, sans-serif;
-    text-align: center;
-    font-size: 20px;
-    line-height: 36px;
-    z-index: 1;
-    cursor: pointer;
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  color: #656565;
+  background none
+  border none
+  font-family: Arial, Helvatic, sans-serif;
+  text-align: center;
+  font-size: 20px;
+  line-height: 36px;
+  z-index: 1;
+  cursor: pointer;
 .quantity_minus
   left 0
   top 0
 .quantity_add
   right 0
   top 0
+.price_p
+  margin 0
 </style>
